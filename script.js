@@ -14,11 +14,11 @@ function fillStates() {
     return response;
 }
 
-function fillPlaces() {
+function fillPlaces(siglaCidade) {
     const select = document.querySelector('#localidade');
-    const uf = document.querySelector('#uf').value;
+    //const uf = document.querySelector('#uf').value;
 
-    const response = fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/distritos`)
+    const response = fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${siglaCidade}/distritos`)
                         .then(response => response.json())
                         .then(data => {
                             data.forEach(place => {
@@ -36,17 +36,17 @@ function findAddressByCep() {
     const cep = document.querySelector('#cep').value;
 
     if (cep) {
-        const response = fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        var cidade = null;
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
                             .then(response => response.json())
                             .then(data => {
                                 document.querySelector('#logradouro').value = data.logradouro;
                                 document.querySelector('#bairro').value = data.bairro;
                                 document.querySelector('#uf').value = data.uf;
-                                fillPlaces(); // DÚVIDA AQUI.
-                                document.querySelector('#localidade').value = data.localidade;
+                                //console.log
+                                fillPlaces(data.uf); // DÚVIDA AQUI
+                                cidade = data.localidade;
                             });
-
-        return response;
     } else {
         return alert('Informe um CEP');
     }
