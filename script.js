@@ -42,7 +42,7 @@ function findAddressByCep() {
                                 document.querySelector('#logradouro').value = data.logradouro;
                                 document.querySelector('#bairro').value = data.bairro;
                                 document.querySelector('#uf').value = data.uf;
-                                fillPlaces();
+                                fillPlaces(); // DÚVIDA AQUI.
                                 document.querySelector('#localidade').value = data.localidade;
                             });
 
