@@ -44,7 +44,6 @@ function findAddressByCep() {
                                 document.querySelector('#uf').value = data.uf;
                                 fillPlaces();
                                 document.querySelector('#localidade').value = data.localidade;
-                                console.log(document.querySelector('#localidade').value);
                             });
 
         return response;
